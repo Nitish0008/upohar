@@ -1,0 +1,370 @@
+@import "tailwindcss";
+
+/* ============================================
+   CELEBRATE ASSAM — Global Design System
+   ============================================ */
+
+@layer base {
+  :root {
+    --bg-primary: #0F0A1E;
+    --bg-secondary: #1A1030;
+    --bg-card: rgba(255, 255, 255, 0.04);
+    --bg-card-hover: rgba(255, 255, 255, 0.08);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-glow: rgba(251, 146, 60, 0.4);
+
+    --gold: #FBBF24;
+    --orange: #F97316;
+    --coral: #FB923C;
+    --rose: #FB7185;
+    --violet: #A78BFA;
+    --teal: #2DD4BF;
+
+    --text-primary: #F9FAFB;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+
+    font-family: 'Outfit', system-ui, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  p { margin: 0; }
+}
+
+/* ============================================
+   CUSTOM UTILITIES & ANIMATIONS
+   ============================================ */
+
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  /* Gradient Text */
+  .text-gradient-warm {
+    background: linear-gradient(135deg, #FBBF24 0%, #F97316 50%, #FB7185 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-cool {
+    background: linear-gradient(135deg, #A78BFA 0%, #60A5FA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Background Gradients */
+  .bg-gradient-warm {
+    background: linear-gradient(135deg, #F97316 0%, #FBBF24 100%);
+  }
+
+  .bg-gradient-hero {
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(249, 115, 22, 0.25) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 80% 80%, rgba(167, 139, 250, 0.15) 0%, transparent 60%),
+                var(--bg-primary);
+  }
+
+  /* Glassmorphism Cards */
+  .glass-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-card-hover {
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .glass-card-hover:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(249, 115, 22, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.12);
+  }
+
+  /* Glow Effects */
+  .glow-orange {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4), 0 0 40px rgba(249, 115, 22, 0.15);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.4), 0 0 40px rgba(251, 191, 36, 0.15);
+  }
+
+  /* Gamosa Pattern Border (Assamese cultural element) */
+  .gamosa-border {
+    border-top: 3px solid transparent;
+    border-image: repeating-linear-gradient(
+      90deg,
+      #EF4444 0px,
+      #EF4444 8px,
+      transparent 8px,
+      transparent 12px,
+      #FFFFFF 12px,
+      #FFFFFF 20px,
+      transparent 20px,
+      transparent 24px
+    ) 1;
+  }
+
+  /* Scrollbar Styling */
+  .custom-scroll::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  .custom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: rgba(249, 115, 22, 0.4);
+    border-radius: 2px;
+  }
+
+  /* Safe Area for Mobile Bottom Nav */
+  .pb-safe {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .bottom-safe {
+    bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(1deg); }
+  66% { transform: translateY(-6px) rotate(-1deg); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-8px) rotate(-1deg); }
+  66% { transform: translateY(-14px) rotate(1deg); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.3); }
+  50% { box-shadow: 0 0 35px rgba(249, 115, 22, 0.6), 0 0 60px rgba(249, 115, 22, 0.2); }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(20deg); }
+  75% { transform: rotate(-15deg); }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-float-delayed { animation: float-delayed 5s ease-in-out infinite; }
+.animate-sparkle { animation: sparkle 2s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-slide-up { animation: slide-in-up 0.6s ease forwards; }
+.animate-fade-in { animation: fade-in 0.5s ease forwards; }
+.animate-bounce-in { animation: bounce-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.animate-wave { animation: wave 1s ease-in-out infinite; }
+
+/* Shimmer button effect */
+.btn-shimmer {
+  background: linear-gradient(135deg, #F97316 0%, #FBBF24 50%, #F97316 100%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-shimmer:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.5), 0 8px 25px rgba(0,0,0,0.3);
+}
+.btn-shimmer:active {
+  transform: scale(0.98);
+}
+
+/* Confetti Particles */
+.confetti-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  animation: confetti-fall linear forwards;
+}
+
+/* ============================================
+   TEMPLATE CARD STYLES
+   ============================================ */
+
+.template-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.template-card:hover {
+  transform: scale(1.04);
+}
+
+.template-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.template-card:hover::after {
+  opacity: 1;
+}
+
+/* ============================================
+   BOTTOM NAV
+   ============================================ */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(15, 10, 30, 0.95);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding-bottom: env(safe-area-inset-bottom, 8px);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 10px 16px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  background: linear-gradient(90deg, #F97316, #FBBF24);
+  border-radius: 0 0 3px 3px;
+}
+
+/* ============================================
+   STEP PROGRESS (Create Flow)
+   ============================================ */
+
+.step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+
+.step-dot.active {
+  width: 28px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #F97316, #FBBF24);
+}
+
+/* Music wave bars */
+.music-bar {
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(to top, #F97316, #FBBF24);
+  animation: music-wave 0.8s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+@keyframes music-wave {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+.music-bar:nth-child(2) { animation-delay: 0.15s; }
+.music-bar:nth-child(3) { animation-delay: 0.3s; }
+.music-bar:nth-child(4) { animation-delay: 0.45s; }
+.music-bar:nth-child(5) { animation-delay: 0.6s; }
+
+/* Watermark */
+.watermark {
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  letter-spacing: 0.5px;
+}
